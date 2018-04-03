@@ -16,9 +16,10 @@ import {
 
 import {TabNavigator, StackNavigator} from 'react-navigation';
 
-import DetailsScreenTwo from './DetailsScreenTwo'
-import Fetch from './Fetch'
-import ConsultationDetail from './consultation-detail'
+import DetailsScreenTwo from './DetailsScreenTwo';
+import Fetch from './Fetch';
+import ConsultationDetail from './consultation-detail';
+import Mpchart from './mpchart';
 
 export interface Specialist{
     id: number,
@@ -80,12 +81,16 @@ class HomeScreen extends React.Component<any, {ds: Specialist[]}>{
         return (
             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
                 <Text>Home screen</Text>
-                <View style = {{height:30, width:100}}>
+                <View style =  {styles.view}>
                     <Button title = 'Detail' color = 'red' onPress = {() => this.props.navigation.navigate('Settings')}/>
                 </View>
 
-                <View style = {{height:30,top:20, width:100}}>
+                <View style =  {styles.view}>
                     <Button title = 'DetailTwo' color = 'red' onPress = {() => this.props.navigation.navigate('DetailsScreen')}/>
+                </View>
+
+                <View style = {styles.view}>
+                    <Button title = 'mpchart' color = 'red' onPress = {() => this.props.navigation.navigate('Mpchart')}/>
                 </View>
 
                 <ScrollView style = {{ marginTop:100, width:300}}>
@@ -103,11 +108,12 @@ class HomeScreen extends React.Component<any, {ds: Specialist[]}>{
                         </TouchableOpacity>
                         <Button title = 'post' color = 'red' onPress = {() => this.getSpecialist()}/>
                     </View>
-
-                    <View style = {{width:100, height:300}}>
-                        {/* <Text>sss</Text> */}
+                    
+                  
+                    {/* <View style = {{width:100, height:300}}>
+                        {/* <Text>sss</Text> 
                         <Name value = 'ff'/>
-                        {/* <Text>{this.state.ds[0].email}</Text> */}
+                        {/* <Text>{this.state.ds[0].email}</Text> 
 
                        <SectionList
                             sections = {this.state.ds}
@@ -115,7 +121,7 @@ class HomeScreen extends React.Component<any, {ds: Specialist[]}>{
                             keyExtractor = {(item, index) => index}
                             renderSectionHeader = {({section}) => <Text style = {styles.sectionHeader}>{section.result}</Text>}
                             />
-                    </View>
+                    </View> */}
                 </ScrollView>
             </View>
         );
@@ -197,7 +203,8 @@ export default StackNavigator ({
     Home: {screen: HomeTab},
     Details:{screen: DetailTab},
     DetailsScreen:{screen: DetailsScreenTwo},
-    ConsultationDetail:{screen:ConsultationDetail}
+    ConsultationDetail:{screen:ConsultationDetail},
+    Mpchart:{screen:Mpchart}
 })
 
 const styles = StyleSheet.create({
@@ -206,5 +213,11 @@ const styles = StyleSheet.create({
         backgroundColor: '#DDDDDD',
         padding: 10,
         marginBottom:10,
+    },
+    view:{
+        height:30,
+        top:20,
+        width:100,
+        bottom:20,
     }
 });

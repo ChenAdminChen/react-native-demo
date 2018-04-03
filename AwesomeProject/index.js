@@ -14,7 +14,7 @@ import { AppRegistry } from 'react-native';
 //TabNavigator and StackNavigator
 
 import TabAndStack from './TabAndStack'
-AppRegistry.registerComponent('AwesomeProject', () => TabAndStack);
+AppRegistry.registerComponent('history-chart', () => TabAndStack);
 
 //-----------------------------------------------------------------------
 

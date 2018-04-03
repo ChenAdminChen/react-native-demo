@@ -32,7 +32,6 @@ export default class Fetch extends React.Component<any, {consulat: Iconsultation
       //回退按钮
       headerTintColor: 'red',
     };
-
   };
 
   constructor(props){
@@ -57,6 +56,7 @@ export default class Fetch extends React.Component<any, {consulat: Iconsultation
     let address = 'http://yifenganxin.com:9000/ws-specialist/user/180/consulting/' + id +'?at=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImtpZCI6ImhueWYifQ.eyJleHAiOjE1MjE1NjM3ODAsInVpZCI6MTcwLCJjaWQiOjMsIm5hbWUiOiJcdTkwZWRcdTZkNzdcdTVjZjAiLCJhdCI6ImhkUkxqcGlSSHNlbzAwTUM0aEVnbUQ1TEhsNWZJNjhPIn0.1tU7PmYZrMm0H7EokQdmExohdZMfH3L_PD8PmMSlVTY';
     // console.info('address',address);
 
+    // fetch 异步加载过程
     fetch(address,{
       method: 'GET',
       headers:{
@@ -73,6 +73,7 @@ export default class Fetch extends React.Component<any, {consulat: Iconsultation
       console.info('j.data',j.data)
     })
   }
+
   render(){
     // let id = this.props.consulation;
     // let con = this.state.consulat
