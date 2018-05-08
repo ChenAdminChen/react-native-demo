@@ -40,9 +40,10 @@ import {
   Dimensions,
   FlatList,
   ScrollView,
+  Button
 } from 'react-native';
 
-import {TabNavigator,TabViewConfig} from 'react-navigation';
+import {TabNavigator,TabViewConfig,StackNavigator} from 'react-navigation';
 
 import { TabViewAnimated, TabBar, SceneMap ,TabViewPagerPan} from 'react-native-tab-view';
 
@@ -50,6 +51,7 @@ import Video from './video';
 import askGovernment from './ask-government';
 import ask from './ask';
 import me from './me';
+import Sideslip from './Sideslip';
 
 let {height, width} = Dimensions.get('window');
 
@@ -187,7 +189,7 @@ class Main extends Component{
 
   _handleIndexChange = index => this.setState({ index });
 
-  _renderHeader = props => <TabBar {...props} scrollEnabled={true} style = {{backgroundColor:'white'}} tabStyle={styles.tab} labelStyle = {{color:'#000000',fontSize:18}}/>;
+  _renderHeader = props => <TabBar {...props} scrollEnabled={true} style = {{backgroundColor:'white',left:60,borderWidth:0}} tabStyle={styles.tab} labelStyle = {{color:'#000000',fontSize:18}}/>;
 
   // _renderScene = SceneMap({
   //   first: FirstRoute,
@@ -239,8 +241,11 @@ class Main extends Component{
   render() {
     return (
       <View style = {{ left:0,right:0,flex:1}}>
-        
-        
+          <View style = {{position:'absolute', backgroundColor:'white',width:60,height:80}}>
+            <Button title = 'Detail'  onPress = {() => alert('fff')}/>
+            {/* <Button onPress = {() => alert('fffd')} style = {{fontSize:20}}>ffffffffff</Button> */}
+          </View>
+
             <TabViewAnimated
             scrollEnabled
             navigationState={this.state}
@@ -251,7 +256,6 @@ class Main extends Component{
             initialLayout={initialLayout}
             renderPager={ props => <TabViewPagerPan { ...props } />}
           />
-        
         {/* <View><Text>fff</Text></View> */}
         {/* <View style = {{left:0,right:0,position:"relative"}}>
           <View style = {styles.scrollBar}>
@@ -265,10 +269,27 @@ class Main extends Component{
   }
 }
 
+
+const MainScreen = StackNavigator(
+  {
+    mainScreen:{screen:Main},
+    sideslipScreen:{screen:Sideslip}
+  },
+  {
+    animationEnabled: true,
+    swipeEnabled:false,   //是否可以滑动左右拖动切换
+    lazyLoad: false,
+    navigationOptions:{
+      visible:true,
+    }
+  }
+);
+
+
 export default TabNavigator(
   {
-    mainScreen:{
-      screen: Main,
+    mainScreens:{
+      screen: MainScreen,
     },
     videoScreen:{
       screen: Video
@@ -282,7 +303,6 @@ export default TabNavigator(
     meScreen:{
       screen:me
     },
-    
   },
   {
     tabBarPosition: 'bottom',   //将导航栏放于底部，
@@ -291,6 +311,8 @@ export default TabNavigator(
     lazyLoad: false,
   }
 );
+
+
 
 
 const styles = StyleSheet.create({
